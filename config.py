@@ -9,10 +9,10 @@ class Config:
         self.API_HASH = "78730e89d196e160b0f1992018c6cb19"
 
         self.BOT_TOKEN = getenv("BOT")
-        self.MONGO_URL = ""
+        self.MONGO_URL = "mongodb+srv://Krishna:pss968048@cluster0.4rfuzro.mongodb.net/?retryWrites=true&w=majority"
 
-        self.LOGGER_ID = -1003763475049
-        self.OWNER_ID = 6944519938
+        self.LOGGER_ID = -1002843633996
+        self.OWNER_ID = 8296101543
 
         self.DURATION_LIMIT = int(getenv("DURATION_LIMIT", 600000000)) * 600000000
         self.QUEUE_LIMIT = int(getenv("QUEUE_LIMIT", 200000000000))
