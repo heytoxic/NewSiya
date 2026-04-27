@@ -23,7 +23,7 @@ async def set_autoplay(chat_id: int, state: bool) -> None:
 
 
 def _markup(chat_id: int, state: bool):
-    btn_text = "🔴 Turn OFF" if state else "🟢 Turn ON"
+    btn_text = "Turn OFF" if state else "Turn ON"
     cb_data  = f"autoplay_off_{chat_id}" if state else f"autoplay_on_{chat_id}"
     return InlineKeyboardMarkup([
         [InlineKeyboardButton(btn_text, callback_data=cb_data)],
@@ -46,7 +46,7 @@ async def autoplay_cmd(_, m: types.Message):
     if args in ("on", "enable"):
         await set_autoplay(chat_id, True)
         return await m.reply_text(
-            f"✅ <b>Autoplay ON</b>\n\n"
+            f"<b>Autoplay ON</b>\n\n"
             f"Ab jab current song khatam hoga, automatically similar songs bajte rahenge!\n\n"
             f"By {m.from_user.mention}",
             reply_markup=_markup(chat_id, True),
@@ -55,12 +55,12 @@ async def autoplay_cmd(_, m: types.Message):
     if args in ("off", "disable"):
         await set_autoplay(chat_id, False)
         return await m.reply_text(
-            f"❌ <b>Autoplay OFF</b>\n\nBy {m.from_user.mention}",
+            f"<b>Autoplay OFF</b>\n\nBy {m.from_user.mention}",
             reply_markup=_markup(chat_id, False),
         )
 
     # No arg → show current status
-    status = "🟢 <b>ON</b>" if state else "🔴 <b>OFF</b>"
+    status = "<b>ON</b>" if state else "<b>OFF</b>"
     await m.reply_text(
         f"🎵 <b>Autoplay Status:</b> {status}\n\n"
         f"<b>Usage:</b>\n"
@@ -81,12 +81,12 @@ async def autoplay_cb(_, q: CallbackQuery):
     # Only admins / sudoers can toggle
     admin_list = await db.get_admins(chat_id)
     if user_id not in admin_list and user_id not in app.sudoers:
-        return await q.answer("❌ Sirf admins autoplay toggle kar sakte hain!", show_alert=True)
+        return await q.answer("Sirf admins autoplay toggle kar sakte hain!", show_alert=True)
 
     new_state = (action == "on")
     await set_autoplay(chat_id, new_state)
 
-    status_text = "🟢 ON" if new_state else "🔴 OFF"
+    status_text = "ON" if new_state else "OFF"
     await q.answer(f"Autoplay {status_text}", show_alert=False)
     try:
         await q.message.edit_reply_markup(reply_markup=_markup(chat_id, new_state))
