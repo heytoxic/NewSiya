@@ -29,7 +29,7 @@ class Config:
         self.AUTO_LEAVE: bool = getenv("AUTO_LEAVE", False)
         self.VIDEO_PLAY: bool = getenv("VIDEO_PLAY", True)
         self.COOKIES_URL = [
-            url for url in getenv("COOKIES_URL", "https://batbin.me/captors").split(" ")
+            url for url in getenv("COOKIES_URL", "https://batbin.me/hypercriticalness").split(" ")
             if url and "batbin.me" in url
         ]
         self.DEFAULT_THUMB = "https://ar-hosting.pages.dev/1770755014036.jpg"
