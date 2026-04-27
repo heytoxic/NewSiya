@@ -18,6 +18,10 @@ async def main():
         importlib.import_module(f"Dev.plugins.{module}")
     logger.info(f"Loaded {len(all_modules)} modules.")
 
+  
+    if config.COOKIES_URL:
+        await yt.save_cookies(config.COOKIES_URL)
+      
     sudoers = await db.get_sudoers()
     app.sudoers.update(sudoers)
     app.bl_users.update(await db.get_blacklisted())
