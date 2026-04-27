@@ -8,7 +8,7 @@ class Config:
         self.API_ID = 21705136
         self.API_HASH = "78730e89d196e160b0f1992018c6cb19"
 
-        self.BOT_TOKEN = "8677717845:AAGt3sfCM30DhTa6Pjs1GllVaNUyzRaKFR8"
+        self.BOT_TOKEN = getenv("BOT")
         self.MONGO_URL = ""
 
         self.LOGGER_ID = -1003763475049
@@ -18,12 +18,12 @@ class Config:
         self.QUEUE_LIMIT = int(getenv("QUEUE_LIMIT", 200000000000))
         self.PLAYLIST_LIMIT = int(getenv("PLAYLIST_LIMIT", 200000000000))
 
-        self.SESSION1 = "BAFLMbAAGH7JAbEAjnpcf3sZ8fAbEfMrwqMNkGIfx0oQ1Y4ysQTQ6LRjHl4-zloy6xxju5vgXUBInMcBMNVbHw6w47yKP16KWp2pQpZvrx5rI35AfV1vQxbWLEYxrF9CKzKRgDObOmoX_TDPuhKW25rSYnzkfiGQ4Ti0iNkkrGSyQSfFX41lObcHtXi60E7QGQIQkMfHBELOJvdpGzfQHZV3XqvXIpi1q-Xw4oXp7xVWgxhzjaDkowNmybaeZSfba4X8H6GSnR7-Ab8Sy6z4ZQdVfM1EXrCEZRIDJGAR7vv-15jP6EyPz0wO2hnq1C26lR4BLNdiz-YX_VglYG1MZCB1lKsSNgAAAAF0Y2d0AA"
+        self.SESSION1 = getenv("S", None)
         self.SESSION2 = getenv("SESSION2", None)
         self.SESSION3 = getenv("SESSION3", None)
 
         self.SUPPORT_CHANNEL = "https://t.me/Toxic_bots"
-        self.SUPPORT_CHAT = "https://t.me/toxiic_chats"
+        self.SUPPORT_CHAT = "https://t.me/Techofy"
 
         self.AUTO_END: bool = getenv("AUTO_END", True)
         self.AUTO_LEAVE: bool = getenv("AUTO_LEAVE", False)
