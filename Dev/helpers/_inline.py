@@ -139,6 +139,7 @@ class Inline:
                 self.ikb(
                     text=lang["add_me"],
                     url=f"https://t.me/{app.username}?startgroup=true",
+                    color="blue",
                     style="primary"
                 )
             ],
@@ -147,6 +148,7 @@ class Inline:
                     text="HELP", 
                     callback_data="help",
                     icon_custom_emoji_id=5337147651609610232,
+                    color="green",
                     style="success"
                 )
             ],
@@ -154,12 +156,14 @@ class Inline:
                 self.ikb(
                     text=lang["support"], 
                     url=config.SUPPORT_CHAT,
+                    color="red",
                     style="danger"
                 ),
                 self.ikb(
                     text=lang["dev"], 
                     user_id=config.OWNER_ID,
-                    style="primary"
+                    color="gray",
+                    style="secondary"
                 ),
             ],
         ]
@@ -169,12 +173,13 @@ class Inline:
                     self.ikb(
                         text=lang["love"],
                         url="https://t.me/Toxic_bots",
+                        color="blue",
                         style="primary"
                     )
                 ]
             ]
         else:
-            rows += [[self.ikb(text=lang["language"], callback_data="language", style="primary")]]
+            rows += [[self.ikb(text=lang["language"], callback_data="language", color="blue", style="primary")]]
         return self.ikm(rows)
         
         
