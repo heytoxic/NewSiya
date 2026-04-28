@@ -131,7 +131,7 @@ class Inline:
             ]
         )
 
-      def start_key(
+    def start_key(
         self, lang: dict, private: bool = False
     ) -> types.InlineKeyboardMarkup:
         rows = [
