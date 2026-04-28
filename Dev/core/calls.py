@@ -168,7 +168,7 @@ class TgCall(PyTgCalls):
         await self.play_media(chat_id, msg, media)
 
     async def _autoplay_next(self, chat_id: int) -> None:
-        from Dev.plugins.autoplay import get_autoplay, get_related_video, get_related_via_search
+        from Dev.plugins.autoplay import get_autoplay, get_next_autoplay_track
         from Dev.helpers import utils
 
         if not await get_autoplay(chat_id):
@@ -180,25 +180,22 @@ class TgCall(PyTgCalls):
             await self.stop(chat_id)
             return
 
-        last_id = last.get("id") if isinstance(last, dict) else None
-        last_title = last.get("title") if isinstance(last, dict) else str(last)
-
-        related = None
-        if last_id:
-            related = await get_related_video(last_id, chat_id)
-        if not related:
-            related = await get_related_via_search(last_title, chat_id)
+        related = await get_next_autoplay_track(chat_id, last)
         if not related:
             await self.stop(chat_id)
             return
 
-        _lang = await lang.get_lang(chat_id)
-
         file_path = await yt.download(related["id"], video=False)
+        if not file_path:
+            related2 = await get_next_autoplay_track(chat_id, last)
+            if related2:
+                file_path = await yt.download(related2["id"], video=False)
+                related = related2
         if not file_path:
             await self.stop(chat_id)
             return
 
+        _lang = await lang.get_lang(chat_id)
         msg = await app.send_message(chat_id=chat_id, text=_lang["play_next"])
 
         track = Track(
