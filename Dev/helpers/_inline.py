@@ -131,7 +131,7 @@ class Inline:
             ]
         )
 
-    def start_key(
+        def start_key(
         self, lang: dict, private: bool = False
     ) -> types.InlineKeyboardMarkup:
         rows = [
@@ -139,12 +139,28 @@ class Inline:
                 self.ikb(
                     text=lang["add_me"],
                     url=f"https://t.me/{app.username}?startgroup=true",
+                    style="primary"
                 )
             ],
-            [self.ikb(text=lang["help"], callback_data="help")],
             [
-                self.ikb(text=lang["support"], url=config.SUPPORT_CHAT),
-                self.ikb(text=lang["dev"], user_id=config.OWNER_ID),
+                self.ikb(
+                    text="HELP", 
+                    callback_data="help",
+                    icon_custom_emoji_id="5337147651609610232",
+                    style="success"
+                )
+            ],
+            [
+                self.ikb(
+                    text=lang["support"], 
+                    url=config.SUPPORT_CHAT,
+                    style="danger"
+                ),
+                self.ikb(
+                    text=lang["dev"], 
+                    user_id=config.OWNER_ID,
+                    style="primary"
+                ),
             ],
         ]
         if private:
@@ -159,6 +175,7 @@ class Inline:
         else:
             rows += [[self.ikb(text=lang["language"], callback_data="language")]]
         return self.ikm(rows)
+        
 
     def yt_key(self, link: str) -> types.InlineKeyboardMarkup:
         return self.ikm(
