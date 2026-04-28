@@ -144,7 +144,7 @@ class Inline:
             ],
             [
                 self.ikb(
-                    text="HELP", 
+                    text="ʜᴇʟᴘ", 
                     callback_data="help",
                     icon_custom_emoji_id=5337147651609610232,
                     style="success"
