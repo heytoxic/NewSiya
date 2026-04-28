@@ -131,7 +131,7 @@ class Inline:
             ]
         )
 
-        def start_key(
+      def start_key(
         self, lang: dict, private: bool = False
     ) -> types.InlineKeyboardMarkup:
         rows = [
@@ -146,7 +146,7 @@ class Inline:
                 self.ikb(
                     text="HELP", 
                     callback_data="help",
-                    icon_custom_emoji_id="5337147651609610232",
+                    icon_custom_emoji_id=5337147651609610232,
                     style="success"
                 )
             ],
@@ -169,12 +169,14 @@ class Inline:
                     self.ikb(
                         text=lang["love"],
                         url="https://t.me/Toxic_bots",
+                        style="primary"
                     )
                 ]
             ]
         else:
-            rows += [[self.ikb(text=lang["language"], callback_data="language")]]
+            rows += [[self.ikb(text=lang["language"], callback_data="language", style="primary")]]
         return self.ikm(rows)
+        
         
 
     def yt_key(self, link: str) -> types.InlineKeyboardMarkup:
